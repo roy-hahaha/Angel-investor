@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-image: url('tea.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .cards{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    /* Glassmorphism card effect */
+    .card {
+        backdrop-filter: blur(16px) saturate(164%);
+        -webkit-backdrop-filter: blur(16px) saturate(164%);
+        background-color: rgba(155, 155, 155, 0.74);
+        border-radius: 12px;
+        border: 1px solid rgba(209, 213, 219, 0.3);
+        width: 350px;
+        height: 350px;
+        margin: 70px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    img{
+        width: 80%;
+        height: 80%;
+        border-radius: 12px;
+        margin-bottom: 10px;
+    }
+
+    button{
+        padding: 10px 20px;
+        border: 2px solid white;
+        background: transparent;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button:hover{
+        background: white;
+        color: black;
+    }
+
+
+</style>
+<body>
+    <div class='cards'>
+        <div class="card">
+            <div>
+                <img src="sales.jpg"/>
+                <a href="sales.html"><button>Sales</button></a>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div>
+                <img src="comparison.jpg"/>
+                <a href="comparison.html"><button>Peer Comparison</button></a>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div>
+                <img src="inventory.jpg"/>
+                <a href="inventory.html"><button>Inventory</button></a>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div>
+                <img src="vendor.jpg"/>
+                <a href="vendor.html"><button>Vendor</button></a>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div>
+                <img src="development.jpg"/>
+                <a href="development.html"><button>Future Development</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

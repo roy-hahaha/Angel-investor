@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    div.banner{
+        background-image: url('tea.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 50vh;
+        width: 100%;
+
+        /* Make the words centre */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+
+        /* Make some spaces in between elements */
+        gap: 10px;
+    }
+
+    .left{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        float: left;
+        width: 60%;
+    }
+
+    .right{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        float: right;
+        width: 40%;
+    }
+
+    canvas{
+        margin: 20px;
+        width: 60%;
+    }
+
+    .details{
+        margin: 20px;
+        width: 100%;
+    }
+
+    table{
+        margin-left: 0;
+        width: 100%;
+        height: 300px;
+        /* Make the table scrollable */
+        overflow-y: scroll;
+    }
+</style>
+<body>
+    <div class="banner">
+        <h1>Sales</h1>
+        <p>This page evaluate the sales of your shop</p>
+    </div>
+
+    <div>
+        <div class="left">
+            <canvas id="myChart" style="width:100%; max-width:600px"></canvas>
+            <canvas id="myChart2" style="width:100%; max-width:600px"></canvas>
+        </div>
+        
+        <div class="right">
+            <div class="details">
+                <h2>Details</h2>
+                <table class="table">
+                    <!-- Yearly Total sales, Cost and Revenue -->
+                    <thead>
+                        <tr>
+                            <th scope="col">Year</th>
+                            <th scope="col">Total Sales</th>
+                            <th scope="col">Total Cost</th>
+                            <th scope="col">Total Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">2021</th>
+                            <td>1000</td>
+                            <td>500</td>
+                            <td>500</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2020</th>
+                            <td>800</td>
+                            <td>400</td>
+                            <td>400</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2019</th>
+                            <td>600</td>
+                            <td>300</td>
+                            <td>300</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2018</th>
+                            <td>400</td>
+                            <td>200</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2017</th>
+                            <td>200</td>
+                            <td>100</td>
+                            <td>100</td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+        </div>
+</body>
+
+<script>
+// Make the xValue to be months
+var xValues = ["January","February","March","April","May","June","July","August","September","October","November", "December"];
+var yValues = [7,8,8,9,9,9,10,11,14,14,15,20];
+
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    title: {display: true, text: 'Monthly Sales'},
+    legend: {display: false},
+    // Add x axis and y axis label
+    scales: {
+        yAxes: [{
+            scaleLabel: {
+                display: true,
+                labelString: 'Sales (In thousands dollars)'
+            }
+        }],
+        xAxes: [{
+            scaleLabel: {
+                display: true,
+                labelString: 'Month'
+            }
+        }]
+    }
+  }
+});
+
+// Chart for monthly cost
+var xValues = ["January","February","March","April","May","June","July","August","September","October","November", "December"];
+var yValues = [3,4,4,4,4,4,5,5,6,6,6,8];
+
+new Chart("myChart2", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(255,0,0,1.0)",
+      borderColor: "rgba(255,0,0,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    title: {display: true, text: 'Monthly Cost'},
+    legend: {display: false},
+    // Add x axis and y axis label
+    scales: {
+        yAxes: [{
+            scaleLabel: {
+                display: true,
+                labelString: 'Cost (In thousands dollars)'
+            }
+        }],
+        xAxes: [{
+            scaleLabel: {
+                display: true,
+                labelString: 'Month'
+            }
+        }]
+    }
+  }
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</html>
