@@ -59,6 +59,7 @@
         justify-content: center;
         align-items: center;
         margin: 20px;
+        width: 40%;
     }
 
     .suggestion{
@@ -66,143 +67,149 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin: 20px;
         text-align: center;
         color: green;
         margin: 0 auto;
-        margin: 30px;
+        width: 80%;
     }
-    footer{
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
-        background-color: rgba(155, 155, 155, 0.74);
-        border: 1px solid rgba(209, 213, 219, 0.3);
+
+    @media screen and (max-width: 800px) {
+        .comparison{
+            width: 100%;
+        }
     }
 </style>
 <body>
     <div class="banner">
         <!--Add a back button to the dashboard.html-->
         <a href="dashboard.html"><button type="button" class="btn btn-outline-light">Back</button></a>
-        <h1>Peer comparison</h1>
-        <p>This page compare your company with your competitors</p>
+        <h1>Inventory</h1>
+        <p>This page shows your current inventory</p>
     </div>
 
     <div class="comparison-list">
         <div class='comparison'>
-            <h3>Comparing your revenue with others <b>Local Company</b></h3>
+            <h3>Changes in today Inventory</h3>
             <canvas id="myChart"></canvas>
         </div>
 
         <div class='comparison'>
-            <h3>Comparing your revenue with others <b>Tea Restaurant</b></h3>
+            <h3>Inventory Left today</h3>
             <canvas id="myChart2"></canvas>
         </div>
     </div>
 
     <div class="suggestion">
-        <p>Based on the comparison, we suggest you to give a discount of 10% on Thursday to gain profit on that day since your company is earning lesser than the mean on that day</p>
+        <p>Based on the comparison, we suggest your company to lower the price of Milk tea to 8 HKD /glass to promote it. Since your milk tea 
+            powder has been held for almost 3 months and the cumulative sale is only 10% of that.
+        </p>
     </div>
-
-    <footer>
-        Report powered by Angel Investors, CopyRight reserved
-    </footer>
 </body>
 
 <script>
-// Make the xValue to be days from 27/4/2023 to 2/5/2023
-var xValue = ['27/4/2023','28/4/2023','29/4/2023','30/4/2023','1/5/2023','2/5/2023'];
-var revenue = [10, 20, 16, 10, 20, 22];
-var averageRevenue = [10, 5, 10, 15, 20, 18];
+// Make the xValue to be different kind of product in tea shop
+var xValue = ['Carrot', 'Lettace', 'Port/kg', 'Beef/kg', 'Chicken Wing', 'Coke/Can', 'Sprite/Can', 'Milk tea Powder/Can']
+// Make the yValue to be the amount of product left in the inventory
+var amountLeft = [60, 40, 30, 20, 50, 20, 20, 30]
+// Make the yValue to be the changed amount of product today
+var amountChanged = [-5, -20, 10, -5, 10, -5, -5, 10]
 
 
+// Make a bar chart to show the changes in inventory
 new Chart("myChart", {
-  type: "line",
+  type: "bar",
   data: {
-      // Display both revenue and average revenue
     labels: xValue,
     datasets: [{
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgba(255,0,0,1.0)",
-      borderColor: "rgba(255,0,0,0.1)",
-      data: revenue,
-      label: 'Revenue'  
-    },
-    {
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgba(0,0,255,1.0)",
-      borderColor: "rgba(0,0,255,0.1)",
-      data: averageRevenue,
-      label: 'Average Revenue in the industry'
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+      data: amountChanged
     }]
   },
   options: {
-    title: {display: true, text: 'Daily revenue'},
-    legend: {display: true},
-    // Add x axis and y axis label
+    legend: {display: false},
+    title: {display: true, text: 'Inventory change today'},
     scales: {
         yAxes: [{
             scaleLabel: {
                 display: true,
-                labelString: 'Sales (In thousands dollars)',
+                labelString: 'Amount left'
             }
         }],
         xAxes: [{
             scaleLabel: {
                 display: true,
-                labelString: 'Month'
+                labelString: 'Product'
             }
         }]
     }
   }
 });
 
-// Make the xValue to be days from 27/4/2023 to 2/5/2023
-var xValue = ['27/4/2023','28/4/2023','29/4/2023','30/4/2023','1/5/2023','2/5/2023'];
-var revenue = [10, 20, 16, 10, 20, 22];
-var averageRevenue = [5, 15, 12, 15, 18, 20];
-
+// Make another bar chart to show the Inventory change
 new Chart("myChart2", {
-  type: "line",
+  type: "bar",
   data: {
-      // Display both revenue and average revenue
     labels: xValue,
     datasets: [{
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgba(255,0,0,1.0)",
-      borderColor: "rgba(255,0,0,0.1)",
-      data: revenue,
-      label: 'Revenue'  
-    },
-    {
-      fill: false,
-      lineTension: 0,
-      backgroundColor: "rgba(0,0,255,1.0)",
-      borderColor: "rgba(0,0,255,0.1)",
-      data: averageRevenue,
-      label: 'Average Revenue in the industry'
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],
+    borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+      data: amountLeft
     }]
   },
   options: {
-    title: {display: true, text: 'Daily revenue'},
-    legend: {display: true},
-    // Add x axis and y axis label
+    legend: {display: false},
+    title: {display: true, text: 'Inventory left'},
+    responsive: true,
     scales: {
         yAxes: [{
             scaleLabel: {
                 display: true,
-                labelString: 'Sales (In thousands dollars)',
-            }
+                labelString: 'Amount left (In kg/Can)',
+            },
+            ticks: {
+                beginAtZero: true
+            },
         }],
         xAxes: [{
             scaleLabel: {
                 display: true,
-                labelString: 'Month'
+                labelString: 'Product'
             }
-        }]
+        }],
     }
   }
 });

@@ -15,6 +15,7 @@
         padding: 0;
         box-sizing: border-box;
     }
+
     div.banner{
         background-image: url('tea.jpg');
         background-size: cover;
@@ -33,6 +34,17 @@
         /* Make some spaces in between elements */
         gap: 10px;
     }
+
+    button{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+    /* Make the canvas responsive */
+    /* If the screen is smaller than 600px, make the canvas 100% width */
+    
+
 
     .left{
         display: flex;
@@ -54,7 +66,7 @@
 
     canvas{
         margin: 20px;
-        width: 60%;
+        width: 100%;
     }
 
     .details{
@@ -63,20 +75,44 @@
     }
 
     table{
-        margin-left: 0;
+        margin-left: -20px;
         width: 100%;
         height: 300px;
-        /* Make the table scrollable */
-        overflow-y: scroll;
+    }
+
+    @media screen and (max-width: 800px) {
+        canvas{
+            margin: 20px;
+            width: 100%;
+        }
+
+        .left{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .right{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 95%;
+            margin: 0 auto;
+        }
     }
 </style>
 <body>
     <div class="banner">
+        <a href="dashboard.html"><button type="button" class="btn btn-outline-light">Back</button></a>
         <h1>Sales</h1>
         <p>This page evaluate the sales of your shop</p>
     </div>
 
-    <div>
+    <div class="data">
         <div class="left">
             <canvas id="myChart" style="width:100%; max-width:600px"></canvas>
             <canvas id="myChart2" style="width:100%; max-width:600px"></canvas>
@@ -126,12 +162,55 @@
                             <td>100</td>
                             <td>100</td>
                         </tr>
+                        <tr>
+                            <th scope="row">2016</th>
+                            <td>100</td>
+                            <td>50</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2015</th>
+                            <td>50</td>
+                            <td>25</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2014</th>
+                            <td>25</td>
+                            <td>12.5</td>
+                            <td>12.5</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2013</th>
+                            <td>12.5</td>
+                            <td>6.25</td>
+                            <td>6.25</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2012</th>
+                            <td>6.25</td>
+                            <td>3.12</td>
+                            <td>3.12</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2011</th>
+                            <td>3.12</td>
+                            <td>1.56</td>
+                            <td>1.56</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2010</th>
+                            <td>1.56</td>
+                            <td>0.78</td>
+                            <td>0.78</td>
+                        </tr>
                     </tbody>
                     
                 </table>
             </div>
         </div>
         </div>
+        <footer>Report powered by Angel Investors, CopyRight reserved</footer>
 </body>
 
 <script>
@@ -146,7 +225,7 @@ new Chart("myChart", {
     labels: xValues,
     datasets: [{
       fill: false,
-      lineTension: 0,
+      lineTension: 0.5,
       backgroundColor: "rgba(0,0,255,1.0)",
       borderColor: "rgba(0,0,255,0.1)",
       data: yValues
@@ -183,7 +262,7 @@ new Chart("myChart2", {
     labels: xValues,
     datasets: [{
       fill: false,
-      lineTension: 0,
+      lineTension: 0.5,
       backgroundColor: "rgba(255,0,0,1.0)",
       borderColor: "rgba(255,0,0,0.1)",
       data: yValues
